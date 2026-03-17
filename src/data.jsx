@@ -12,6 +12,7 @@ import {
   SiTailwindcss, SiPytorch, SiGit, SiGithub, SiTensorflow, SiLangchain,
   SiDocker, SiFastapi, SiScikitlearn, SiNginx, SiOpencv, SiPandas,
   SiNumpy, SiHtml5, SiCss3, SiHtmx, SiGoogle,
+  SiLinux,
 } from 'react-icons/si';
 import {
   FaChartLine, FaCamera, FaWandMagicSparkles, FaMedal, FaLaptopCode,
@@ -112,14 +113,12 @@ export const skillsData = {
   'Languages': [
     { name: 'Python', icon: <SiPython className="text-blue-500" /> },
     { name: 'JavaScript', icon: <SiJavascript className="text-yellow-500" /> },
+    { name: 'SQL', icon: <SiPostgresql className="text-indigo-500" /> },
   ],
-  'Web Development': [
-    { name: 'PostgreSQL', icon: <SiPostgresql className="text-indigo-500" /> },
-    { name: 'MySQL', icon: <SiMysql className="text-orange-500" /> },
+  'Frameworks & Libraries': [
     { name: 'Django', icon: <SiDjango className="text-emerald-600" /> },
     { name: 'FastAPI', icon: <SiFastapi className="text-teal-500" /> },
-    { name: 'HTML', icon: <SiHtml5 className="text-orange-500" /> },
-    { name: 'CSS', icon: <SiCss3 className="text-blue-500" /> },
+    { name: 'HTMX', icon: <SiHtmx className="text-cyan-600" /> },
     { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-400" /> },
     { name: 'React', icon: <SiReact className="text-cyan-500" /> },
   ],
@@ -127,22 +126,18 @@ export const skillsData = {
     { name: 'PyTorch', icon: <SiPytorch className="text-orange-600" /> },
     { name: 'TensorFlow', icon: <SiTensorflow className="text-orange-500" /> },
     { name: 'scikit-learn', icon: <SiScikitlearn className="text-orange-400" /> },
-    { name: 'OpenCV', icon: <SiOpencv className="text-emerald-500" /> },
-    { name: 'Pandas', icon: <SiPandas className="text-indigo-500" /> },
-    { name: 'NumPy', icon: <SiNumpy className="text-cyan-500" /> },
-    { name: 'Matplotlib', icon: <FaChartLine className="text-slate-500" /> },
-    { name: 'LangChain', icon: <SiLangchain className="text-emerald-500" /> },
     { name: 'Prompt Engineering', icon: <FaWandMagicSparkles className="text-violet-500" /> },
+    { name: 'RAG Pipelines', icon: <SiLangchain className="text-emerald-500" /> },
+    { name: 'Agent Workflows', icon: <FaLaptopCode className="text-indigo-500" /> },
+    { name: 'Matplotlib', icon: <FaChartLine className="text-slate-500" /> },
   ],
   'DevOps': [
     { name: 'Docker', icon: <SiDocker className="text-blue-500" /> },
     { name: 'Git', icon: <SiGit className="text-orange-500" /> },
     { name: 'GitHub', icon: <SiGithub className="text-gray-700" /> },
     { name: 'Nginx', icon: <SiNginx className="text-green-500" /> },
-  ],
-  'Hobbies': [
-    { name: 'Photography', icon: <FaCamera className="text-rose-500" /> },
-    { name: 'Photo Editing', icon: <FaWandMagicSparkles className="text-violet-500" /> },
+    { name: 'Linux', icon: <SiLinux className="text-red-500" /> },
+    { name: 'VPS Hosting', icon: <FaLaptopCode className="text-blue-600" /> },
   ],
 };
 
