@@ -1,22 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiHome, FiUser, FiFolder, FiMail, FiGithub, FiLinkedin, FiFileText } from 'react-icons/fi';
+import { FiFileText } from 'react-icons/fi';
+import { navLinks, socialLinks } from '../data';
 
 const Navbar = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
-
-  const navLinks = [
-    { name: 'Home', href: '#home', icon: FiHome },
-    { name: 'About', href: '#about', icon: FiUser },
-    { name: 'Projects', href: '#projects', icon: FiFolder },
-    { name: 'Contact', href: '#contact', icon: FiMail },
-  ];
-
-  const socialLinks = [
-    { name: 'GitHub', href: 'https://github.com/aboodmord6', icon: FiGithub },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/abdallah-zeineelabidine/', icon: FiLinkedin },
-  ];
 
   return (
     <>
@@ -168,4 +157,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-

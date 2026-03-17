@@ -1,96 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiImage, FiBarChart2, FiFileText, FiExternalLink } from 'react-icons/fi';
-import { 
-  SiPython, SiDjango, SiPytorch, SiTailwindcss, SiReact, SiMysql, 
-  SiPostgresql, SiJavascript, SiHtmx, SiNumpy, SiPandas, SiGoogle,
-  SiLangchain
-} from 'react-icons/si';
-
-// Image Imports
-// FinAI
-import finAiBanner from '../../FinAiPreview/banner.png';
-import finAiBanks from '../../FinAiPreview/Bankspage.png';
-import finAiLogin from '../../FinAiPreview/Login.png';
-import finAiAbout from '../../FinAiPreview/about page.png';
-import finAiChat from '../../FinAiPreview/chatconfrsation.png3.png';
-import finAiReg from '../../FinAiPreview/regstraion.png';
-
-// QuoteX
-import quoteXDash from '../../QuoteXPreview/DashBoard.jpeg';
-import quoteXMgmt from '../../QuoteXPreview/QuoteManagement.jpeg';
-import quoteXBanner from '../../QuoteXPreview/banner.png';
-
-// Hfawa
-import hfawaBanner from '../../HfawaPreview/banner.png';
-
-// FER (Facial Expression Recognition)
-import ferThumbnail from '../../FERPreview/FERthumnail.png';
-
-// OCR
-import ocrThumbnail from '/ocr.png';
+import { projects } from '../data';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-
-  const projects = [
-    {
-      title: "FinAI",
-      description: "AI-Powered Fintech Assistant. Full-featured personal banker app to manage accounts, discover offers, and make informed decisions.",
-      tags: ["Django", "LangChain", "Gemini", "Tailwind", "PostgreSQL"],
-      icons: [<SiDjango title="Django" />, <SiGoogle title="Gemini" />, <SiTailwindcss title="Tailwind CSS" />, <SiPostgresql title="PostgreSQL" />],
-      image: finAiBanner,
-      gallery: [finAiBanks, finAiLogin, finAiChat, finAiReg, finAiAbout],
-      link: "https://github.com/aboodmord6/FinAi"
-    },
-    {
-      title: "QuoteX",
-      description: "Comprehensive Quote Management System (SaaS). Streamlines the quoting process for businesses.",
-      tags: ["Django", "HTMX", "JS", "PDF", "Gemini", "LangChain"],
-      icons: [<SiDjango title="Django" />, <SiHtmx title="HTMX" />, <SiJavascript title="JavaScript" />, <FiFileText title="PDF" />, <SiGoogle title="Gemini" />],
-      image: quoteXBanner, // Using Dashboard as main preview to match others
-      gallery: [quoteXDash, quoteXMgmt],
-      link: "https://github.com/aboodmord6/QuoteX"
-    },
-    {
-      title: "Hfawa",
-      description: "Hospitality Management Platform. Elevating guest experiences through digital solutions.",
-      tags: ["Django", "HTMX", "JS", "Tailwind", "PostgreSQL"],
-      icons: [<SiDjango title="Django" />, <SiHtmx title="HTMX" />, <SiJavascript title="JavaScript" />, <SiTailwindcss title="Tailwind CSS" />, <SiPostgresql title="PostgreSQL" />],
-      image: hfawaBanner,
-      gallery: [], // Only one image, so no gallery needed
-      link: "https://github.com/aboodmord6/Hfawa-UIX"
-    },
-    {
-      title: "Facial Expression Recognition",
-      description: "A deep learning project for classifying facial expressions into 6 emotion categories using MobileNetV4 architecture.",
-      tags: ["PyTorch", "OpenCV", "Python", "Deep Learning"],
-      icons: [<SiPytorch title="PyTorch" />, <SiPython title="Python" />, <SiNumpy title="NumPy" />, <FiBarChart2 title="Matplotlib" />],
-      image: ferThumbnail,
-      gallery: [],
-      link: "https://github.com/aboodmord6/Facial-expression-project"
-    },
-    {
-      title: "OCR Deep Learning Model",
-      description: "Custom, optimized OCR architecture solving complex CAPTCHAs with 93% accuracy.",
-      tags: ["PyTorch", "Python", "Matplotlib", "Numpy", "Pandas"],
-      icons: [<SiPytorch title="PyTorch" />, <SiPython title="Python" />, <SiNumpy title="Numpy" />, <SiPandas title="Pandas" />, <FiBarChart2 title="Matplotlib" />],
-      image: ocrThumbnail,
-      gallery: [],
-      link: "https://github.com/aboodmord6/OCR-Custom-model"
-    },
-    {
-      title: "Lung Cancer MRI Classification",
-      description: "Multi-class MRI tumor classification using ResNet with 91% accuracy and GAN-balanced datasets.",
-      tags: ["PyTorch", "Python", "Matplotlib", "Numpy", "Pandas"],
-      icons: [<SiPytorch title="PyTorch" />, <SiPython title="Python" />, <SiNumpy title="Numpy" />, <SiPandas title="Pandas" />, <FiBarChart2 title="Matplotlib" />],
-      image: null,
-      gallery: [],
-      link: "#"
-    }
-    
-  ];
 
   return (
     <section id="projects" className="bg-base-100 py-24 relative">

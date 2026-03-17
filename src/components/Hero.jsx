@@ -2,13 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import bgPattern from '../Background.svg'
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  SiDjango, 
-  SiPytorch, 
-  SiLangchain, 
-  SiTensorflow 
-} from 'react-icons/si';
 import { FaMapMarkerAlt, FaFileAlt } from 'react-icons/fa';
+import { personalInfo, heroBadges, heroTooltips } from '../data';
 
 const TechTooltip = ({ text, items }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -54,9 +49,9 @@ const Hero = () => {
   const [cursorVisible, setCursorVisible] = useState(true);
   const [isDot, setIsDot] = useState(false);
 
-  const titleText = "Hello, I'm Abdallah Zeine Elabidine";
-  const subtitleText = "AI Engineer with Backend Experience";
-  const typingSpeed =   20; // ms per character
+  const titleText = personalInfo.title;
+  const subtitleText = personalInfo.subtitle;
+  const typingSpeed = 20; // ms per character
 
   useEffect(() => {
     let titleIndex = 0;
@@ -152,30 +147,17 @@ const Hero = () => {
           <div className="w-full">
             {/* Quick Highlights Bar */}
               <div className="flex flex-wrap gap-3 mb-2">
-                <motion.span 
-                  className="px-3 py-1.5 bg-primary/15 text-primary rounded-full text-sm font-medium"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={showRest ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                  transition={{ duration: 0.3, delay: 0.4 }}
-                >
-                  Excellence GPA Student
-                </motion.span>
-                <motion.span 
-                  className="px-3 py-1.5 bg-primary/15 text-primary rounded-full text-sm font-medium"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={showRest ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                  transition={{ duration: 0.3, delay: 0.5 }}
-                >
-                  IBM AI Engineering Certified
-                </motion.span>
-                <motion.span 
-                  className="px-3 py-1.5 bg-primary/15 text-primary rounded-full text-sm font-medium"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={showRest ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                  transition={{ duration: 0.3, delay: 0.6 }}
-                >
-                  3rd Place Fintech Rally Hackathon
-                </motion.span>
+                {heroBadges.map((badge, i) => (
+                  <motion.span
+                    key={badge}
+                    className="px-3 py-1.5 bg-primary/15 text-primary rounded-full text-sm font-medium"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={showRest ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3, delay: 0.4 + i * 0.1 }}
+                  >
+                    {badge}
+                  </motion.span>
+                ))}
               </div>
             {/* Main Heading with Typing Effect */}
             <div className="min-h-[6rem] md:min-h-[8rem] lg:min-h-[10rem]">
@@ -205,26 +187,20 @@ const Hero = () => {
               <div className="text-lg md:text-xl text-base-content/70 mb-4 cursor-default">
                 Specializing in{' '}
                 <TechTooltip 
-                  text="Django web development" 
-                  items={[
-                    { icon: SiDjango, name: 'Django', color: '#092E20' },
-                    { icon: SiLangchain, name: 'LangChain', color: '#005500' }
-                  ]} 
+                  text={heroTooltips.django.text}
+                  items={heroTooltips.django.items}
                 />
                 {' '}and{' '}
                 <TechTooltip 
-                  text="Artificial Intelligence models" 
-                  items={[
-                    { icon: SiPytorch, name: 'PyTorch', color: '#EE4C2C' },
-                    { icon: SiTensorflow, name: 'TensorFlow', color: '#FF6F00' }
-                  ]} 
+                  text={heroTooltips.ai.text}
+                  items={heroTooltips.ai.items}
                 />
               </div>
 
               {/* Location Line */}
               <div className="flex items-center flex-wrap gap-x-2 gap-y-1 text-base-content/60 mb-8">
                 <FaMapMarkerAlt className="text-primary" />
-                <span>Based in Jeddah, Saudi Arabia • Open to opportunities</span>
+                <span>{personalInfo.location}</span>
                 <span>•</span>
                 <Link 
                   to="/cv" 

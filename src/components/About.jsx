@@ -1,42 +1,8 @@
 import { motion } from 'framer-motion';
-import { FaDatabase, FaGraduationCap, FaTrophy, FaMedal, FaLaptopCode, FaWrench, FaCertificate, FaHandshake, FaArrowUpRightFromSquare, FaPlug, FaCamera, FaWandMagicSparkles } from 'react-icons/fa6';
-import { SiPython, SiJavascript, SiPostgresql, SiMysql, SiDjango, SiReact, SiTailwindcss, SiPytorch, SiHtmx, SiGit, SiGithub, SiTensorflow, SiLangchain, SiDocker, SiFastapi, SiScikitlearn, SiNginx } from 'react-icons/si';
+import { FaChartLine, FaGraduationCap, FaTrophy, FaMedal, FaLaptopCode, FaWrench, FaCertificate, FaHandshake, FaArrowUpRightFromSquare, FaBriefcase } from 'react-icons/fa6';
+import { skillsData, education, experience, highlights, certifications, certificationsUrl, volunteering } from '../data';
 
 const About = () => {
-  // Unified neutral styling for all skills - icons keep their brand colors
-  const skillsData = {
-
-    'Languages & DBMS': [
-        { name: 'Python', icon: <SiPython className="text-blue-500" /> },
-        { name: 'JavaScript', icon: <SiJavascript className="text-yellow-500" /> },
-        { name: 'SQL', icon: <FaDatabase className="text-slate-500" /> },
-        { name: 'PostgreSQL', icon: <SiPostgresql className="text-indigo-500" /> },
-        { name: 'MySQL', icon: <SiMysql className="text-orange-500" /> }
-    ],
-    'Frameworks & Libraries': [
-        { name: 'Django', icon: <SiDjango className="text-emerald-600" /> },
-        { name: 'LangChain', icon: <SiLangchain className="text-emerald-500" /> },
-        { name: 'FastAPI', icon: <SiFastapi className="text-teal-500" /> },
-        { name: 'HTMX', icon: <SiHtmx className="text-blue-500" /> },
-        { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-400" /> },
-        { name: 'PyTorch', icon: <SiPytorch className="text-orange-600" /> },
-        { name: 'TensorFlow', icon: <SiTensorflow className="text-orange-500" /> },
-        { name: 'scikit-learn', icon: <SiScikitlearn className="text-orange-400" /> },
-        { name: 'React', icon: <SiReact className="text-cyan-500" /> }
-    ],
-    'DevOps': [
-        { name: 'API Integrations', icon: <FaPlug className="text-purple-500" /> },
-        { name: 'Docker', icon: <SiDocker className="text-blue-500" /> },
-        { name: 'Git', icon: <SiGit className="text-orange-500" /> },
-        { name: 'GitHub', icon: <SiGithub className="text-gray-700" /> },
-        { name: 'Nginx', icon: <SiNginx className="text-green-500" /> }
-    ],
-    'Hobbies': [
-        { name: 'Photography', icon: <FaCamera className="text-rose-500" /> },
-        { name: 'Photo Editing', icon: <FaWandMagicSparkles className="text-violet-500" /> }
-    ]
-  };
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -93,11 +59,11 @@ const About = () => {
             className="grid grid-cols-1 md:grid-cols-12 gap-5"
         >
           
-          {/* Left Column: Tech Stack (8 cols on md+) */}
+          {/* Left Column: Skills (8 cols on md+) */}
           <motion.div variants={item} className={`md:col-span-8 ${cardBaseOut}`}>
             <div className="card-body p-6 h-full">
               <h3 className="text-lg font-bold text-base-content flex items-center gap-2 mb-4">
-                <FaWrench className="text-xl text-primary" /> Tech Stack
+                <FaWrench className="text-xl text-primary" /> Skills
               </h3>
               
               <div className="space-y-4">
@@ -121,33 +87,59 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Education + Highlights stacked (4 cols on md+) */}
+            {/* Right Column: Experience + Education + Highlights stacked (4 cols on md+) */}
           <div className="md:col-span-4 flex flex-col gap-5">
+            {/* Experience */}
+            <motion.div variants={item} className={`flex-1 ${cardBaseIn}`}>
+               <div className="card-body p-6">
+                <h3 className="text-lg font-bold text-base-content flex items-center gap-2 mb-3">
+                  <FaBriefcase className="text-xl text-primary" /> Experience
+                </h3>
+                <div className="flex flex-col gap-4">
+                  {experience.map((job, i) => (
+                    <div key={i} className="flex gap-3">
+                      <div className="flex flex-col items-center pt-1">
+                        <div className={`w-2.5 h-2.5 rounded-full ${job.active ? 'bg-primary' : 'bg-base-content/40'}`}></div>
+                        {i < experience.length - 1 && <div className="w-0.5 h-full bg-base-200 my-1.5 rounded-full"></div>}
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-base-content">{job.title}</h4>
+                        <div className="text-primary/80 text-sm mt-0.5">{job.company} - {job.type}</div>
+                        <div className="text-xs text-base-content/50 mt-1">{job.period}</div>
+                        <div className="text-xs text-base-content/50">{job.location}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+               </div>
+            </motion.div>
+
             {/* Education */}
             <motion.div variants={item} className={`flex-1 ${cardBaseIn}`}>
                <div className="card-body p-6">
                   <h3 className="text-lg font-bold text-base-content flex items-center gap-2 mb-3">
                       <FaGraduationCap className="text-xl text-primary" /> Education
                   </h3>
-                  <div className="flex gap-3">
-                      <div className="flex flex-col items-center pt-1">
-                          <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
-                          <div className="w-0.5 h-full bg-base-200 my-1.5 rounded-full"></div>
-                      </div>
-                      <div className="flex-1">
-                          <h4 className="font-bold text-base-content">BASc Data Science & AI</h4>
-                          <div className="text-primary/80 text-sm mt-0.5">Al Ahliyya Amman University</div>
-                          <div className="text-xs text-base-content/50 mt-1">2022 - Present</div>
-                          <div className="mt-2 flex flex-wrap gap-1.5">
-                              <span className="px-2 py-0.5 rounded bg-base-200 text-base-content/70 text-xs font-medium">
-                                  GPA 3.71 / 4.0
-                              </span>
-                              <span className="px-2 py-0.5 rounded bg-base-200 text-base-content/70 text-xs font-medium">
-                                  Senior Year
-                              </span>
-                          </div>
-                      </div>
-                  </div>
+                  {education.map((edu, i) => (
+                    <div key={i} className="flex gap-3">
+                        <div className="flex flex-col items-center pt-1">
+                            <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
+                            <div className="w-0.5 h-full bg-base-200 my-1.5 rounded-full"></div>
+                        </div>
+                        <div className="flex-1">
+                            <h4 className="font-bold text-base-content">{edu.degree}</h4>
+                            <div className="text-primary/80 text-sm mt-0.5">{edu.university}</div>
+                            <div className="text-xs text-base-content/50 mt-1">{edu.period}</div>
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                              {edu.tags.map((tag) => (
+                                <span key={tag} className="px-2 py-0.5 rounded bg-base-200 text-base-content/70 text-xs font-medium">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                        </div>
+                    </div>
+                  ))}
                </div>
             </motion.div>
 
@@ -158,34 +150,28 @@ const About = () => {
                   <FaTrophy className="text-xl text-amber-500" /> Highlights
                 </h3>
                 <div className="flex flex-col gap-4">
-                   <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-base-200 flex items-center justify-center text-lg"><FaMedal className="text-amber-500" /></div>
+                  {highlights.map((h, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-base-200 flex items-center justify-center text-lg">{h.icon}</div>
                       <div>
-                          <div className="font-semibold text-base-content">Fintech Rally</div>
-                          <div className="text-sm text-base-content/60">3rd Place • JOPACC</div>
-                          <div className="text-xs text-base-content/40 mt-0.5">Jul 2025</div>
+                          <div className="font-semibold text-base-content">{h.title}</div>
+                          <div className="text-sm text-base-content/60">{h.subtitle}</div>
+                          <div className="text-xs text-base-content/40 mt-0.5">{h.date}</div>
                       </div>
-                   </div>
-                   <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-base-200 flex items-center justify-center text-lg"><FaLaptopCode className="text-blue-500" /></div>
-                      <div>
-                          <div className="font-semibold text-base-content">Programming Contest</div>
-                          <div className="text-sm text-base-content/60">Participant • AAU</div>
-                          <div className="text-xs text-base-content/40 mt-0.5">Nov 2023</div>
-                      </div>
-                   </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
           </div>
 
-          {/* 5. Certifications - Neutral with left accent */}
+          {/* Certifications */}
           <motion.div variants={item} className={`md:col-span-12 ${cardBaseOut}`}>
              <div className="card-body p-6">
                 <h3 className="text-lg font-bold text-base-content flex items-center gap-2 mb-4">
                     <FaCertificate className="text-xl text-primary" /> Certifications
                     <a 
-                      href="https://www.linkedin.com/in/abdallah-zeineelabidine/details/certifications/" 
+                      href={certificationsUrl}
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="ml-1 text-base-content/40 hover:text-primary transition-colors"
@@ -195,11 +181,7 @@ const About = () => {
                     </a>
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                    {[
-                        { title: "IBM AI Engineering", org: "IBM", date: "Jun 2025", accent: "bg-blue-500" },
-                        { title: "Google Prompting", org: "Google", date: "Jun 2025", accent: "bg-orange-500" },
-                        { title: "Meta Back-End Dev", org: "Meta", date: "Feb 2025", accent: "bg-blue-600" }
-                    ].map((cert, i) => (
+                    {certifications.map((cert, i) => (
                         <div key={i} className="flex items-stretch rounded-lg border border-base-200 bg-base-200 transition-colors overflow-hidden">
                             <div className={`w-1 ${cert.accent}`}></div>
                             <div className="flex flex-col p-3 flex-1">
@@ -215,7 +197,7 @@ const About = () => {
              </div>
           </motion.div>
 
-          {/* 6. Volunteering - Standard card style */}
+          {/* Volunteering */}
           <motion.div variants={item} className={`md:col-span-12 ${cardBaseIn}`}>
              <div className="card-body p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
@@ -227,10 +209,7 @@ const About = () => {
                 </div>
                 
                 <div className="flex flex-wrap gap-3">
-                    {[
-                        { role: "Event Coordinator", org: "IEEE CS Chapter", logo: "/IEEE-CS_LogoTM-orange.png" },
-                        { role: "Course Manager", org: "Data Science Club", logo: "/DSAI_logo.jpg" }
-                    ].map((vol, i) => (
+                    {volunteering.map((vol, i) => (
                         <div key={i} className="flex items-center gap-3 bg-base-200/50 py-2 px-3 rounded-lg border border-base-200">
                              <img src={vol.logo} alt={vol.org} className="w-8 h-8 object-contain rounded" />
                              <div className="flex flex-col">
