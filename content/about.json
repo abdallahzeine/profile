@@ -1,0 +1,126 @@
+{
+  "skillsData": {
+    "Languages": [
+      { "name": "Python", "icon": "SiPython", "className": "text-blue-500" },
+      { "name": "JavaScript", "icon": "SiJavascript", "className": "text-yellow-500" },
+      { "name": "TypeScript", "icon": "SiTypescript", "className": "text-blue-600" },
+      { "name": "SQL", "icon": "SiPostgresql", "className": "text-indigo-500" },
+      { "name": "HTML", "icon": "SiHtml5", "className": "text-orange-600" },
+      { "name": "CSS", "icon": "SiCss3", "className": "text-blue-500" }
+    ],
+    "Frameworks & Libraries": [
+      { "name": "Django", "icon": "SiDjango", "className": "text-emerald-600" },
+      { "name": "FastAPI", "icon": "SiFastapi", "className": "text-teal-500" },
+      { "name": "HTMX", "icon": "SiHtmx", "className": "text-cyan-600" },
+      { "name": "Tailwind CSS", "icon": "SiTailwindcss", "className": "text-cyan-400" },
+      { "name": "React", "icon": "SiReact", "className": "text-cyan-500" },
+      { "name": "Streamlit", "icon": "FaLaptopCode", "className": "text-red-500" },
+      { "name": "REST APIs", "icon": "FaLaptopCode", "className": "text-slate-500" }
+    ],
+    "AI & Data Science": [
+      { "name": "PyTorch", "icon": "SiPytorch", "className": "text-orange-600" },
+      { "name": "TensorFlow", "icon": "SiTensorflow", "className": "text-orange-500" },
+      { "name": "scikit-learn", "icon": "SiScikitlearn", "className": "text-orange-400" },
+      { "name": "Prompt Engineering", "icon": "FaWandMagicSparkles", "className": "text-violet-500" },
+      { "name": "RAG Pipelines", "icon": "SiLangchain", "className": "text-emerald-500" },
+      { "name": "Agent Workflows", "icon": "FaLaptopCode", "className": "text-indigo-500" },
+      { "name": "Transformers", "icon": "SiHuggingface", "className": "text-yellow-500" },
+      { "name": "LangGraph", "icon": "SiLangchain", "className": "text-emerald-500" },
+      { "name": "OCR Pipelines", "icon": "FaLaptopCode", "className": "text-blue-500" },
+      { "name": "Matplotlib", "icon": "FaChartLine", "className": "text-slate-500" }
+    ],
+    "DevOps": [
+      { "name": "Docker", "icon": "SiDocker", "className": "text-blue-500" },
+      { "name": "Git", "icon": "SiGit", "className": "text-orange-500" },
+      { "name": "GitHub", "icon": "SiGithub", "className": "text-gray-700" },
+      { "name": "Nginx", "icon": "SiNginx", "className": "text-green-500" },
+      { "name": "Linux", "icon": "SiLinux", "className": "text-red-500" },
+      { "name": "VPS Hosting", "icon": "FaLaptopCode", "className": "text-blue-600" },
+      { "name": "Amazon Web Services", "icon": "SiAmazonwebservices", "className": "text-orange-500" },
+      { "name": "Huawei Cloud", "icon": "SiHuawei", "className": "text-red-500" }
+    ],
+    "Concepts & Knowledge": [
+      { "name": "API Development", "icon": "FaLaptopCode", "className": "text-indigo-500" },
+      { "name": "Agent Orchestration", "icon": "FaLaptopCode", "className": "text-violet-500" },
+      { "name": "Context Engineering", "icon": "FaWandMagicSparkles", "className": "text-fuchsia-500" },
+      { "name": "Cloud Computing", "icon": "FaLaptopCode", "className": "text-sky-500" }
+    ]
+  },
+  "education": [
+    {
+      "degree": "BASc Data Sciences & Artificial Intelligence",
+      "university": "Al Ahliyya Amman University",
+      "period": "Oct 2022 - Jun 2026",
+      "location": "Amman, Jordan",
+      "program": "Data Sciences & Artificial Intelligence",
+      "tags": ["GPA 3.67 / 4.0", "Senior Year"]
+    }
+  ],
+  "experience": [
+    {
+      "title": "AI Developer Intern",
+      "company": "Optimum Partners Global",
+      "type": "Internship",
+      "period": "Mar 2026 - Jun 2026",
+      "location": "Jordan - On-site",
+      "active": false,
+      "details": [
+        "Led a team of 14 AI interns by organizing project flow, assigning tasks, and coordinating execution across the team."
+      ]
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "Freelancer",
+      "type": "Freelance",
+      "period": "Jan 2023 - Present",
+      "location": "Remote",
+      "active": false
+    }
+  ],
+  "highlights": [
+    {
+      "icon": "FaMedal",
+      "className": "text-amber-500",
+      "title": "Fintech Rally",
+      "subtitle": "3rd Place • JOPACC",
+      "date": "Jul 2025"
+    },
+    {
+      "icon": "FaLaptopCode",
+      "className": "text-blue-500",
+      "title": "Programming Contest",
+      "subtitle": "Participant • AAU",
+      "date": "Nov 2023"
+    },
+    {
+      "icon": "FaLaptopCode",
+      "className": "text-red-500",
+      "title": "Huawei ICT Competition",
+      "subtitle": "Participant • Huawei",
+      "date": "May 2025"
+    },
+    {
+      "icon": "FaLaptopCode",
+      "className": "text-violet-500",
+      "title": "Modelathon Competition",
+      "subtitle": "Participant • IEEE Jordan Section",
+      "date": "Mar 2025"
+    }
+  ],
+  "certifications": [
+    { "title": "Retrieval-Augmented Generation (RAG) with Embeddings & Vector Databases", "org": "Scrimba", "date": "Jan 2026", "accent": "bg-indigo-500" },
+    { "title": "AI Infrastructure and Operations Fundamentals", "org": "NVIDIA", "date": "Jan 2026", "accent": "bg-green-500" },
+    { "title": "IBM AI Engineering Professional Certificate", "org": "IBM", "date": "Aug 2025", "accent": "bg-blue-500" },
+    { "title": "Google Prompting Essentials", "org": "Google", "date": "Jan 2025", "accent": "bg-orange-500" },
+    { "title": "Meta Back-End Developer Certificate", "org": "Meta", "date": "Feb 2025", "accent": "bg-blue-600" }
+  ],
+  "certificationsUrl": "https://www.linkedin.com/in/abdallah-zeineelabidine/details/certifications/",
+  "volunteering": [
+    { "role": "Event Coordinator", "org": "IEEE CS Chapter", "logo": "/images/IEEE-CS_LogoTM-orange.png", "period": "Mar 2025 - Jun 2026" },
+    { "role": "Course Manager", "org": "Data Science Club", "logo": "/images/DSAI_logo.jpg", "period": "Oct 2024 - Jun 2025" }
+  ],
+  "languages": [
+    { "name": "Arabic", "level": "Native" },
+    { "name": "English", "level": "B2 Upper Intermediate", "detail": "EFSET 4 Skills Test" }
+  ]
+}

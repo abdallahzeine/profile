@@ -1,9 +1,15 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import bgPattern from '../Background.svg'
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaMapMarkerAlt, FaFileAlt } from 'react-icons/fa';
-import { personalInfo, heroBadges, heroTooltips } from '../data';
+import { icons } from '../lib/icons';
+import site from '../content/site.json';
+import hero from '../content/hero.json';
+
+const { personalInfo, labels } = site;
+const { heroBadges, heroTooltips } = hero;
 
 const TechTooltip = ({ text, items }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -27,12 +33,15 @@ const TechTooltip = ({ text, items }) => {
             transition={{ duration: 0.2 }}
             className="absolute left-1/2 bottom-full mb-3 flex gap-2 p-2 bg-base-100/90 backdrop-blur-md rounded-xl shadow-xl border border-base-200 min-w-max z-50 pointer-events-none"
           >
-            {items.map((item) => (
-              <div key={item.name} className="flex items-center gap-1.5 px-2 py-1 bg-base-200/50 rounded-lg">
-                <item.icon className="text-lg" style={{ color: item.color }} />
-                <span className="text-xs font-semibold whitespace-nowrap">{item.name}</span>
-              </div>
-            ))}
+            {items.map((item) => {
+              const ItemIcon = icons[item.icon];
+              return (
+                <div key={item.name} className="flex items-center gap-1.5 px-2 py-1 bg-base-200/50 rounded-lg">
+                  <ItemIcon className="text-lg" style={{ color: item.color }} />
+                  <span className="text-xs font-semibold whitespace-nowrap">{item.name}</span>
+                </div>
+              );
+            })}
             {/* Arrow */}
             <div className="absolute left-1/2 top-full -translate-x-1/2 border-8 border-transparent border-t-base-100/90" />
           </motion.div>
@@ -48,7 +57,6 @@ const Hero = () => {
   const [showRest, setShowRest] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
   const [isDot, setIsDot] = useState(false);
-
   const titleText = personalInfo.title;
   const subtitleText = personalInfo.subtitle;
   const typingSpeed = 20; // ms per character
@@ -88,7 +96,7 @@ const Hero = () => {
     }, typingSpeed);
 
     return () => clearInterval(titleTimer);
-  }, []);
+  }, [subtitleText, titleText]);
 
   // Blinking cursor effect - stops when it becomes a dot
   useEffect(() => {
@@ -118,31 +126,12 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden">
-      {/* Grid Pattern Layer */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, oklch(from var(--color-secondary) l c h / 0.2) 1px, transparent 1px), linear-gradient(to bottom, oklch(from var(--color-secondary) l c h / 0.2) 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-          backgroundPosition: 'center center',
-        }}
-      />
-
-      {/* SVG Background Image Layer */}
-      <div
-        className="absolute inset-0 z-1 pointer-events-none opacity-60"
-        style={{
-          backgroundImage: `url(${bgPattern})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-
+    <section
+      id="home"
+      className="relative min-h-screen overflow-hidden"
+    >
       {/* Content Layer */}
-      <main className="relative z-10 min-h-screen bg-base-100/50 flex items-center pt-10">
+      <main className="relative z-10 min-h-screen flex items-center pt-10">
         <div className="hero-content text-left text-base-content px-4 md:px-8 lg:px-16 w-full max-w-6xl mx-auto">
           <div className="w-full">
             {/* Quick Highlights Bar */}
@@ -161,7 +150,7 @@ const Hero = () => {
               </div>
             {/* Main Heading with Typing Effect */}
             <div className="min-h-[6rem] md:min-h-[8rem] lg:min-h-[10rem]">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-2 leading-snug">
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-2 leading-snug">
                 {renderTitle()}
                 {displayedTitle.length === titleText.length && <br />}
                 {displayedTitle.length === titleText.length && (
@@ -185,12 +174,12 @@ const Hero = () => {
             >
               {/* Subtext with Tooltips */}
               <div className="text-lg md:text-xl text-base-content/70 mb-4 cursor-default">
-                Specializing in{' '}
-                <TechTooltip 
+                {labels.heroSpecializing}{' '}
+                <TechTooltip
                   text={heroTooltips.django.text}
                   items={heroTooltips.django.items}
                 />
-                {' '}and{' '}
+                {' '}{labels.heroAnd}{' '}
                 <TechTooltip 
                   text={heroTooltips.ai.text}
                   items={heroTooltips.ai.items}
@@ -202,12 +191,12 @@ const Hero = () => {
                 <FaMapMarkerAlt className="text-primary" />
                 <span>{personalInfo.location}</span>
                 <span>•</span>
-                <Link 
-                  to="/cv" 
+                <Link
+                  href="/cv"
                   className="inline-flex items-center gap-1 hover:text-primary transition-colors duration-200"
                 >
                   <FaFileAlt className="text-sm" />
-                  <span>View CV</span>
+                  <span>{labels.viewCV}</span>
                 </Link>
               </div>
 

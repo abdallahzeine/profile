@@ -1,0 +1,169 @@
+{
+  "projects": [
+    {
+      "title": "FinAI",
+      "priority": 3,
+      "description": "AI-Powered Fintech Assistant. Full-featured personal banker app to manage accounts, discover offers, and make informed decisions.",
+      "highlights": [
+        "AI-powered financial services platform for Jordanian banks with agent assistance, OTP authentication, role-based access, chat memory, and caching to reduce external API usage."
+      ],
+      "tags": ["Django", "LangChain", "Gemini", "Tailwind", "PostgreSQL"],
+      "icons": [
+        { "icon": "SiDjango", "title": "Django" },
+        { "icon": "SiGoogle", "title": "Gemini" },
+        { "icon": "SiTailwindcss", "title": "Tailwind CSS" },
+        { "icon": "SiPostgresql", "title": "PostgreSQL" }
+      ],
+      "image": "/images/projects/finai/banner.png",
+      "gallery": [
+        "/images/projects/finai/banks.png",
+        "/images/projects/finai/login.png",
+        "/images/projects/finai/chat.png",
+        "/images/projects/finai/register.png",
+        "/images/projects/finai/about.png"
+      ],
+      "link": "https://github.com/abdallahzeine/FinAi"
+    },
+    {
+      "title": "QuoteX",
+      "priority": 6,
+      "description": "Comprehensive Quote Management System (SaaS). Streamlines the quoting process for businesses.",
+      "tags": ["Django", "HTMX", "JS", "PDF", "Gemini", "LangChain"],
+      "icons": [
+        { "icon": "SiDjango", "title": "Django" },
+        { "icon": "SiHtmx", "title": "HTMX" },
+        { "icon": "SiJavascript", "title": "JavaScript" },
+        { "icon": "FiFileText", "title": "PDF" },
+        { "icon": "SiGoogle", "title": "Gemini" }
+      ],
+      "image": "/images/projects/quotex/banner.png",
+      "gallery": [
+        "/images/projects/quotex/dashboard.jpeg",
+        "/images/projects/quotex/management.jpeg"
+      ],
+      "link": "https://github.com/abdallahzeine/QuoteX"
+    },
+    {
+      "title": "Hfawa",
+      "priority": 5,
+      "description": "Hospitality Management Platform. Elevating guest experiences through digital solutions.",
+      "highlights": [
+        "Charity and hospitality event scheduling system for managing Umrah and Hajj visitor events, developed for a first customer."
+      ],
+      "tags": ["Django", "HTMX", "JS", "Tailwind", "PostgreSQL"],
+      "icons": [
+        { "icon": "SiDjango", "title": "Django" },
+        { "icon": "SiHtmx", "title": "HTMX" },
+        { "icon": "SiJavascript", "title": "JavaScript" },
+        { "icon": "SiTailwindcss", "title": "Tailwind CSS" },
+        { "icon": "SiPostgresql", "title": "PostgreSQL" }
+      ],
+      "image": "/images/projects/hfawa/banner.png",
+      "gallery": [],
+      "link": "https://github.com/abdallahzeine/Hfawa-UIX"
+    },
+    {
+      "title": "Facial Expression Recognition",
+      "priority": 8,
+      "description": "A deep learning project for classifying facial expressions into 6 emotion categories using MobileNetV4 architecture.",
+      "tags": ["PyTorch", "OpenCV", "Python", "Deep Learning"],
+      "icons": [
+        { "icon": "SiPytorch", "title": "PyTorch" },
+        { "icon": "SiPython", "title": "Python" },
+        { "icon": "SiNumpy", "title": "NumPy" },
+        { "icon": "FiBarChart2", "title": "Matplotlib" }
+      ],
+      "image": "/images/projects/fer/thumbnail.png",
+      "gallery": [],
+      "link": "https://github.com/abdallahzeine/Facial-expression-project"
+    },
+    {
+      "title": "OCR Deep Learning Model",
+      "priority": 7,
+      "description": "Custom, optimized OCR architecture solving complex CAPTCHAs with 93% accuracy.",
+      "highlights": [
+        "Designed and optimized a deep learning OCR model that achieved 93% accuracy on complex CAPTCHA examples."
+      ],
+      "tags": ["PyTorch", "Python", "Matplotlib", "Numpy", "Pandas"],
+      "icons": [
+        { "icon": "SiPytorch", "title": "PyTorch" },
+        { "icon": "SiPython", "title": "Python" },
+        { "icon": "SiNumpy", "title": "Numpy" },
+        { "icon": "SiPandas", "title": "Pandas" },
+        { "icon": "FiBarChart2", "title": "Matplotlib" }
+      ],
+      "image": "/images/ocr.png",
+      "gallery": [],
+      "link": "https://github.com/abdallahzeine/OCR-Custom-model"
+    },
+    {
+      "title": "Lung Cancer MRI Classification",
+      "priority": 9,
+      "description": "Multi-class MRI tumor classification using ResNet with 91% accuracy and GAN-balanced datasets.",
+      "tags": ["PyTorch", "Python", "Matplotlib", "Numpy", "Pandas"],
+      "icons": [
+        { "icon": "SiPytorch", "title": "PyTorch" },
+        { "icon": "SiPython", "title": "Python" },
+        { "icon": "SiNumpy", "title": "Numpy" },
+        { "icon": "SiPandas", "title": "Pandas" },
+        { "icon": "FiBarChart2", "title": "Matplotlib" }
+      ],
+      "image": null,
+      "gallery": [],
+      "link": "#"
+    },
+    {
+      "title": "Arabic OCR System (Graduation Project)",
+      "priority": 1,
+      "description": "Document digitization system that converts Arabic paper documents into structured digital information.",
+      "highlights": [
+        "Improved VLM output accuracy with contextual guidance and document-element organization before extraction."
+      ],
+      "tags": ["Python", "OCR", "VLM", "Document AI"],
+      "icons": [
+        { "icon": "SiPython", "title": "Python" },
+        { "icon": "SiHuggingface", "title": "Vision-Language Models" },
+        { "icon": "FaLaptopCode", "title": "OCR Pipelines" }
+      ],
+      "image": null,
+      "gallery": [],
+      "link": "#"
+    },
+    {
+      "title": "SiraStudio",
+      "priority": 2,
+      "description": "AI-powered CV builder with a custom ATS template and integrated AI agent for fast live CV generation and editing.",
+      "highlights": [
+        "Improved performance and reduced token usage by 80% through cost-efficient tool-calling optimization."
+      ],
+      "tags": ["Python", "Django", "AI Agents", "ATS"],
+      "icons": [
+        { "icon": "SiPython", "title": "Python" },
+        { "icon": "SiDjango", "title": "Django" },
+        { "icon": "SiLangchain", "title": "AI Agents" },
+        { "icon": "FaWandMagicSparkles", "title": "AI Optimization" }
+      ],
+      "image": null,
+      "gallery": [],
+      "link": "#"
+    },
+    {
+      "title": "VR Interview System",
+      "priority": 4,
+      "description": "AI interview simulation platform with turn-based interviews and voice analysis.",
+      "highlights": [
+        "Selected as the first project to be presented at my university's Job Fair Day.",
+        "Worked as a backend team member."
+      ],
+      "tags": ["Python", "AI", "Voice Analysis", "Backend"],
+      "icons": [
+        { "icon": "SiPython", "title": "Python" },
+        { "icon": "FaLaptopCode", "title": "Backend" },
+        { "icon": "FaWandMagicSparkles", "title": "AI" }
+      ],
+      "image": null,
+      "gallery": [],
+      "link": "#"
+    }
+  ]
+}

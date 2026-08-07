@@ -1,0 +1,51 @@
+{
+  "personalInfo": {
+    "name": "Abdallah Zeine Elabidine",
+    "title": "Hello, I'm Abdallah Zeine Elabidine",
+    "subtitle": "AI Engineer with Backend Experience",
+    "location": "Based in Jeddah, Saudi Arabia • Open to opportunities"
+  },
+  "navLinks": [
+    { "name": "Home", "href": "#home", "icon": "FiHome" },
+    { "name": "About", "href": "#about", "icon": "FiUser" },
+    { "name": "Projects", "href": "#projects", "icon": "FiFolder" },
+    { "name": "Contact", "href": "#contact", "icon": "FiMail" }
+  ],
+  "socialLinks": [
+    { "name": "GitHub", "href": "https://github.com/abdallahzeine", "icon": "FiGithub" },
+    { "name": "LinkedIn", "href": "https://www.linkedin.com/in/abdallah-zeineelabidine/", "icon": "FiLinkedin" }
+  ],
+  "contactInfo": {
+    "email": "abdallahzeine@gmail.com",
+    "phones": [
+      { "number": "+962 78 007 1840", "href": "tel:+962780071840", "label": "Jordan" },
+      { "number": "+966 56 645 4894", "href": "tel:+966566454894", "label": "Saudi Arabia", "secondary": true }
+    ],
+    "heading": "Let's Chat!",
+    "subheading": "Open to opportunities, collaborations, or just a friendly hello.",
+    "quickMsgTitle": "Quick Message",
+    "quickMsgDesc": "Prefer email? Click the button below.",
+    "quickMsgBtn": "Send Email"
+  },
+  "labels": {
+    "viewCV": "View CV",
+    "heroSpecializing": "Specializing in",
+    "heroAnd": "and",
+    "aboutBadge": "About Me",
+    "aboutHeading": "My Journey",
+    "skills": "Skills",
+    "experience": "Experience",
+    "education": "Education",
+    "highlights": "Highlights",
+    "certifications": "Certifications",
+    "volunteering": "Volunteering",
+    "volunteeringSub": "Community Engagement",
+    "languages": "Languages",
+    "projectsBadge": "My Work",
+    "projectsHeading": "Featured Projects",
+    "viewGallery": "View Gallery",
+    "gallerySuffix": "Gallery",
+    "secondary": "(Secondary)",
+    "rights": "All rights reserved."
+  }
+}

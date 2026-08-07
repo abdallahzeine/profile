@@ -1,0 +1,23 @@
+{
+  "heroBadges": [
+    "Excellence GPA Student",
+    "IBM AI Engineering Certified",
+    "3rd Place Fintech Rally Hackathon"
+  ],
+  "heroTooltips": {
+    "django": {
+      "text": "Django web development",
+      "items": [
+        { "icon": "SiDjango", "name": "Django", "color": "#092E20" },
+        { "icon": "SiLangchain", "name": "LangChain", "color": "#005500" }
+      ]
+    },
+    "ai": {
+      "text": "Artificial Intelligence models",
+      "items": [
+        { "icon": "SiPytorch", "name": "PyTorch", "color": "#EE4C2C" },
+        { "icon": "SiTensorflow", "name": "TensorFlow", "color": "#FF6F00" }
+      ]
+    }
+  }
+}

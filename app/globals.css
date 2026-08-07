@@ -1,0 +1,158 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "Claude";
+  default: false;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: #F4F3EE;
+  --color-base-200: #FAFAFA;
+  --color-base-300: #F2F2F2;
+  --color-base-content: #333336;
+  --color-primary: #C15F3C;
+  --color-primary-content: #F9F9FA;
+  --color-secondary: #B1ADA1;
+  --color-secondary-content: #F9F9FA;
+  --color-accent: #F4F3EE;
+  --color-accent-content: #4A615E;
+  --color-neutral: #ffffff;
+  --color-neutral-content: #5C5A61;
+  --color-info: #5D9FEB;
+  --color-info-content: #2D3B5C;
+  --color-success: #66CA7A;
+  --color-success-content: #2F5B3F;
+  --color-warning: #F0C854;
+  --color-warning-content: #8C5A1D;
+  --color-error: #E86D6D;
+  --color-error-content: #5C2222;
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 2px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* ============================================================
+   Cohere-inspired design system, applied over the brand palette.
+   Brand & accent anchors (primary / canvas / ink / stone / green)
+   are the DaisyUI "Claude" tokens above and are NOT changed.
+   ============================================================ */
+
+@theme {
+  /* One type stack for the whole site — Space Grotesk everywhere */
+  --font-sans: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: var(--font-sans);
+
+  /* Supporting hairline rules, warm-tinted to sit on the #F4F3EE canvas */
+  --color-rule: #e0dcd2;
+  --color-rule-strong: #c9c4b8;
+}
+
+:root {
+  /* Keyboard focus ring (Cohere focus blue) */
+  --focus: #4c6ee6;
+}
+
+body {
+  font-family: var(--font-sans, "Space Grotesk", "Inter", Arial, ui-sans-serif, system-ui, sans-serif);
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-primary-content);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@layer components {
+  /* Display type — tight, carved, low weight */
+  .cohere-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+  }
+
+  /* Uppercase mono technical label */
+  .cohere-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.28px;
+    text-transform: uppercase;
+  }
+
+  /* Pill CTA — near-black on light surfaces, inversed on dark bands */
+  .cohere-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .cohere-btn-dark {
+    background-color: var(--color-base-content);
+    color: var(--color-base-100);
+  }
+  .cohere-btn-dark:hover {
+    background-color: var(--color-primary);
+    color: var(--color-primary-content);
+  }
+  .cohere-btn-light {
+    background-color: var(--color-base-100);
+    color: var(--color-base-content);
+  }
+  .cohere-btn-light:hover {
+    background-color: #ffffff;
+  }
+
+  /* Secondary action — underlined text link */
+  .cohere-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--color-base-content);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklab, var(--color-base-content) 25%, transparent);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+  .cohere-link:hover {
+    color: var(--color-primary);
+    text-decoration-color: var(--color-primary);
+  }
+
+  /* Soft coral taxonomy chip */
+  .cohere-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in oklab, var(--color-primary) 30%, transparent);
+    background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+}
