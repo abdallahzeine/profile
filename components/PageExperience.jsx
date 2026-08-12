@@ -1,8 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import {
-  AnimatePresence,
   animate,
   motion,
   useMotionValue,
@@ -18,7 +17,12 @@ import Hero from './Hero';
 import Navbar from './Navbar';
 import Projects from './Projects';
 
-const MAX_PROGRESS = 100;
+// The deep-zoom abyss runs continuously from first paint — the ordinary
+// portfolio floats over a background that is already falling endlessly into
+// the void. The scroll-up "mystery" entry point that used to hide the
+// foreground has been removed, so the page now behaves like a normal
+// scrolling portfolio with this ambient background living behind it.
+//
 // Two persistent image layers alternate forever. Each runs the same cycle,
 // phase-offset by half a cycle, so the next image begins appearing WHILE the
 // current one is still zoomed in — there is never a gap, never a wait until
@@ -71,34 +75,6 @@ const VIGNETTE =
 const depthFactor = (scale) =>
   0.4 + 1.2 * Math.min(1, Math.max(0, (scale - ZOOM_START) / (ZOOM_END - ZOOM_START)));
 
-const getWheelDistance = (event) => {
-  const multiplier =
-    event.deltaMode === 1
-      ? 16
-      : event.deltaMode === 2
-        ? window.innerHeight
-        : 1;
-
-  return Math.abs(event.deltaY) * multiplier;
-};
-
-const isEditableTarget = (target) => {
-  if (!(target instanceof HTMLElement)) return false;
-
-  return (
-    target.isContentEditable ||
-    ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(target.tagName)
-  );
-};
-
-// The deep-zoom abyss runs continuously from first paint — a mixed,
-// paradoxical state where the ordinary portfolio floats over a background
-// that is already falling endlessly into the void. The mystery state only
-// decides whether the foreground content is still there.
-//
-// Exactly two layers exist for the life of the page. A single rAF loop
-// advances both through their cycles; no layers are ever created or
-// destroyed, so there is no completion callback to race or misfire.
 const ZoomBackgroundLayer = ({
   layerRef,
   scale,
@@ -139,15 +115,6 @@ const ZoomBackgroundLayer = ({
 );
 
 const PageExperience = () => {
-  const [progress, setProgress] = useState(0);
-  const [isPulling, setIsPulling] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
-  const [isRevealed, setIsRevealed] = useState(false);
-
-  const progressRef = useRef(0);
-  const isCompleteRef = useRef(false);
-  const touchYRef = useRef(null);
-
   // Two persistent image layers. They are never added or removed — only their
   // scale/opacity/z/rotation are advanced each frame by the loop below.
   const layer0Scale = useMotionValue(ZOOM_START);
@@ -233,115 +200,6 @@ const PageExperience = () => {
     layer1Rotate,
   ]);
 
-  const addProgress = useCallback((distance) => {
-    if (isCompleteRef.current) return;
-
-    // Keep each gesture meaningful without allowing one very large wheel event
-    // to skip the interaction completely.
-    const amount = Math.min(MAX_PROGRESS / 10, Math.max(1, Math.abs(distance) * 0.1));
-    const nextProgress = Math.min(MAX_PROGRESS, progressRef.current + amount);
-
-    progressRef.current = nextProgress;
-    setProgress(Math.round(nextProgress));
-    setIsPulling(true);
-
-    if (nextProgress >= MAX_PROGRESS) {
-      isCompleteRef.current = true;
-      setIsComplete(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    const isAtTop = () => window.scrollY <= 2;
-
-    const handleWheel = (event) => {
-      if (
-        isCompleteRef.current ||
-        event.ctrlKey ||
-        event.deltaY >= 0 ||
-        !isAtTop()
-      ) {
-        return;
-      }
-
-      // The browser has nowhere further to scroll at the top, so use this
-      // upward attempt as the progress gesture instead.
-      event.preventDefault();
-      addProgress(getWheelDistance(event));
-    };
-
-    const handleTouchStart = (event) => {
-      touchYRef.current = event.touches[0]?.clientY ?? null;
-    };
-
-    const handleTouchMove = (event) => {
-      if (isCompleteRef.current || !isAtTop() || touchYRef.current === null) {
-        return;
-      }
-
-      const currentY = event.touches[0]?.clientY;
-      if (currentY === undefined) return;
-
-      const upwardDistance = currentY - touchYRef.current;
-      touchYRef.current = currentY;
-
-      // Pulling the finger down at the top is the touch equivalent of
-      // scrolling upward with a mouse or trackpad.
-      if (upwardDistance <= 0) return;
-
-      event.preventDefault();
-      addProgress(upwardDistance);
-    };
-
-    const handleTouchEnd = () => {
-      touchYRef.current = null;
-    };
-
-    const handleKeyDown = (event) => {
-      if (
-        isCompleteRef.current ||
-        !isAtTop() ||
-        isEditableTarget(event.target) ||
-        !['ArrowUp', 'PageUp', 'Home'].includes(event.key)
-      ) {
-        return;
-      }
-
-      event.preventDefault();
-      addProgress(event.key === 'ArrowUp' ? 5 : 10);
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
-    window.addEventListener('touchcancel', handleTouchEnd, { passive: true });
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
-      window.removeEventListener('touchcancel', handleTouchEnd);
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [addProgress]);
-
-  useEffect(() => {
-    if (!isComplete) return undefined;
-
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-    const previousBodyOverflow = document.body.style.overflow;
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.documentElement.style.overflow = previousHtmlOverflow;
-      document.body.style.overflow = previousBodyOverflow;
-    };
-  }, [isComplete]);
-
   const stopBackgroundReturn = useCallback(() => {
     returnAnimations.current.forEach((animation) => animation.stop());
     returnAnimations.current = [];
@@ -371,17 +229,13 @@ const PageExperience = () => {
     stopBackgroundReturn();
   }, [stopBackgroundReturn]);
 
-  const handleSiteExitComplete = () => {
-    if (isCompleteRef.current) setIsRevealed(true);
-  };
-
   return (
     <div
-      className={`relative isolate min-h-screen ${isComplete ? 'h-dvh overflow-hidden' : 'overflow-x-hidden'}`}
+      className="relative isolate min-h-screen overflow-x-hidden"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >
-      {/* Keep the complete hero artwork alive while the foreground becomes mysterious. */}
+      {/* Ambient deep-zoom abyss living behind the portfolio content. */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-base-100" aria-hidden="true">
         {/* Grid Pattern Layer */}
         <div
@@ -425,55 +279,14 @@ const PageExperience = () => {
         />
       </div>
 
-      <AnimatePresence initial={false}>
-        {!isRevealed && (
-          <motion.div
-            key="site-content"
-            initial={{ opacity: 1, y: 0, scale: 1 }}
-            animate={
-              isComplete
-                ? { opacity: 0, y: '110vh', scale: 0.98 }
-                : { opacity: 1, y: 0, scale: 1 }
-            }
-            transition={{
-              duration: 1.2,
-              ease: [0.76, 0, 0.24, 1],
-            }}
-            onAnimationComplete={handleSiteExitComplete}
-            className="relative z-10"
-          >
-            <Navbar />
-            <Hero />
-            <About />
-            <Projects />
-            <Contact />
-            <Footer />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {isPulling && !isRevealed && (
-          <motion.div
-            initial={{ opacity: 0, y: 12, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.96 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            role="status"
-            aria-live="polite"
-            aria-label={`Loading ${progress}%`}
-            className="pointer-events-none fixed left-1/2 top-1/2 z-[80] flex -translate-x-1/2 -translate-y-1/2 items-center gap-3 rounded-full border border-base-content/10 bg-base-100/85 px-4 py-3 text-base-content shadow-xl backdrop-blur-md"
-          >
-            <span
-              className="h-4 w-4 animate-spin rounded-full border-2 border-base-content/20 border-t-primary"
-              aria-hidden="true"
-            />
-            <span className="min-w-[3.5rem] text-center font-mono text-sm font-medium tabular-nums">
-              {progress}%
-            </span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <About />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
 
       <Analytics />
       <SpeedInsights />
