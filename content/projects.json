@@ -122,8 +122,7 @@
       "tags": ["Python", "OCR", "VLM", "Document AI"],
       "icons": [
         { "icon": "SiPython", "title": "Python" },
-        { "icon": "SiHuggingface", "title": "Vision-Language Models" },
-        { "icon": "FaLaptopCode", "title": "OCR Pipelines" }
+        { "icon": "SiHuggingface", "title": "Hugging Face" }
       ],
       "image": null,
       "gallery": [],
@@ -140,8 +139,7 @@
       "icons": [
         { "icon": "SiPython", "title": "Python" },
         { "icon": "SiDjango", "title": "Django" },
-        { "icon": "SiLangchain", "title": "AI Agents" },
-        { "icon": "FaWandMagicSparkles", "title": "AI Optimization" }
+        { "icon": "SiLangchain", "title": "LangChain" }
       ],
       "image": null,
       "gallery": [],
@@ -157,9 +155,7 @@
       ],
       "tags": ["Python", "AI", "Voice Analysis", "Backend"],
       "icons": [
-        { "icon": "SiPython", "title": "Python" },
-        { "icon": "FaLaptopCode", "title": "Backend" },
-        { "icon": "FaWandMagicSparkles", "title": "AI" }
+        { "icon": "SiPython", "title": "Python" }
       ],
       "image": null,
       "gallery": [],
