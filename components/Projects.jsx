@@ -50,14 +50,25 @@ const Projects = () => {
               {/* Media — only rendered when the project has an image */}
               {project.image && (
                 <figure
-                  className="relative aspect-[16/9] cursor-pointer overflow-hidden bg-base-200"
+                  data-color-mode-image-frame={project.imageTone || undefined}
+                  className={`relative aspect-[16/9] cursor-pointer overflow-hidden bg-base-200 ${project.imageTone === 'original' ? 'rounded-t-[15px]' : ''}`}
                   onClick={() => project.gallery.length > 0 && setSelectedProject(project)}
                 >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  {project.imageLayout === 'logo' ? (
+                    <div
+                      data-image-tone="original"
+                      className="absolute top-1/2 left-1/2 aspect-[2/1] w-[72%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl bg-white"
+                    >
+                      <img src={project.image} alt={project.title} className="h-full w-full scale-125 object-cover" />
+                    </div>
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      data-image-tone={project.imageTone}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
                   {project.gallery.length > 0 && (
                     <div className="absolute inset-0 flex items-center justify-center bg-base-content/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <span className="inline-flex items-center gap-2 rounded-full bg-base-100 px-4 py-2 text-sm font-medium text-base-content">
@@ -135,6 +146,7 @@ const Projects = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
+              data-color-mode-layer
               className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-[22px] border border-rule bg-base-100 p-6"
               onClick={(e) => e.stopPropagation()}
             >
@@ -154,10 +166,16 @@ const Projects = () => {
                 {selectedProject.gallery.map((img, idx) => (
                   <div
                     key={idx}
+                    data-color-mode-image-frame={selectedProject.galleryTone || undefined}
                     className="cursor-pointer overflow-hidden rounded-lg border border-rule transition-transform hover:scale-[1.02]"
-                    onClick={() => setSelectedImage(img)}
+                    onClick={() => setSelectedImage({ src: img, tone: selectedProject.galleryTone })}
                   >
-                    <img src={img} alt={`${selectedProject.title} screenshot ${idx + 1}`} className="h-auto w-full" />
+                    <img
+                      src={img}
+                      alt={`${selectedProject.title} screenshot ${idx + 1}`}
+                      data-image-tone={selectedProject.galleryTone}
+                      className="h-auto w-full"
+                    />
                   </div>
                 ))}
               </div>
@@ -173,6 +191,7 @@ const Projects = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            data-color-mode-layer
             className="fixed inset-0 z-[70] flex items-center justify-center bg-base-content/95 p-4 backdrop-blur-md"
             onClick={() => setSelectedImage(null)}
           >
@@ -187,7 +206,8 @@ const Projects = () => {
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
-              src={selectedImage}
+              src={selectedImage.src}
+              data-image-tone={selectedImage.tone}
               alt="Preview"
               className="max-h-[90vh] w-full max-w-full rounded-lg object-contain shadow-2xl"
               onClick={(e) => e.stopPropagation()}

@@ -15,6 +15,7 @@
         { "icon": "SiPostgresql", "title": "PostgreSQL" }
       ],
       "image": "/images/projects/finai/banner.png",
+      "galleryTone": "dark",
       "gallery": [
         "/images/projects/finai/banks.png",
         "/images/projects/finai/login.png",
@@ -59,6 +60,7 @@
         { "icon": "SiPostgresql", "title": "PostgreSQL" }
       ],
       "image": "/images/projects/hfawa/banner.png",
+      "imageLayout": "logo",
       "gallery": [],
       "link": "https://github.com/abdallahzeine/Hfawa-UIX"
     },
@@ -93,6 +95,7 @@
         { "icon": "FiBarChart2", "title": "Matplotlib" }
       ],
       "image": "/images/ocr.png",
+      "imageTone": "original",
       "gallery": [],
       "link": "https://github.com/abdallahzeine/OCR-Custom-model"
     },

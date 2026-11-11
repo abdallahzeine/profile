@@ -56,6 +56,101 @@
 :root {
   /* Keyboard focus ring (Cohere focus blue) */
   --focus: #4c6ee6;
+
+  /* Apply inversion to the root so fixed docks and overlays stay viewport-fixed. */
+  --inverse-page-filter: invert(1) hue-rotate(180deg);
+  --inverse-original-image-filter: hue-rotate(180deg) invert(1);
+  --inverse-dark-image-filter: brightness(0.92) var(--inverse-original-image-filter);
+  --inverse-scrollbar-color: #80786e #171613;
+  --inverse-dock-hover-color: #f1c4b5;
+  --dock-hover-color: var(--color-primary);
+  color-scheme: var(--page-color-scheme, light);
+  filter: var(--page-filter, none);
+  scrollbar-color: var(--page-scrollbar-color, revert-layer);
+}
+
+:root[data-color-mode="dark"] {
+  --page-color-scheme: dark;
+  --page-filter: var(--inverse-page-filter);
+  --page-scrollbar-color: var(--inverse-scrollbar-color);
+  --original-image-filter: var(--inverse-original-image-filter);
+  --dark-image-filter: var(--inverse-dark-image-filter);
+  --dock-hover-color: var(--inverse-dock-hover-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-color-mode]) {
+    --page-color-scheme: dark;
+    --page-filter: var(--inverse-page-filter);
+    --page-scrollbar-color: var(--inverse-scrollbar-color);
+    --original-image-filter: var(--inverse-original-image-filter);
+    --dark-image-filter: var(--inverse-dark-image-filter);
+    --dock-hover-color: var(--inverse-dock-hover-color);
+  }
+}
+
+/* Preserve selected images and logo backings through the root inversion. */
+[data-image-tone="original"] {
+  filter: var(--original-image-filter, none);
+}
+
+/* Screenshots with dark interfaces retain their dark surfaces and receive a softer grade. */
+img[data-image-tone="dark"] {
+  filter: var(--dark-image-filter, none);
+}
+
+@property --color-mode-reveal-radius {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+/* During the reveal the live backdrop supplies the inversion instead of the root filter. */
+:root[data-color-mode-transition] {
+  --color-mode-reveal-duration: 1350ms;
+  filter: none;
+}
+
+:root[data-color-mode-transition] [data-image-tone="original"] {
+  filter: none;
+}
+
+:root[data-color-mode-transition] img[data-image-tone="dark"] {
+  animation: color-mode-image-dim var(--color-mode-reveal-duration) ease-in-out both;
+}
+
+:root[data-color-mode-transition="light"] img[data-image-tone="dark"] {
+  animation-direction: reverse;
+}
+
+.color-mode-reveal {
+  --reveal-edge: max(0%, calc(var(--color-mode-reveal-radius) - 0.1%));
+  --reveal-mask: radial-gradient(circle farthest-corner, #000 var(--reveal-edge), transparent var(--color-mode-reveal-radius));
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  backdrop-filter: var(--inverse-page-filter);
+  mask-image: var(--reveal-mask);
+  animation: color-mode-reveal var(--color-mode-reveal-duration) ease-in-out both;
+}
+
+.color-mode-reveal[data-target="light"] {
+  --reveal-mask: radial-gradient(circle farthest-corner, transparent var(--reveal-edge), #000 var(--color-mode-reveal-radius));
+}
+
+.color-mode-reveal[data-protected] {
+  mask-image: var(--reveal-mask), url(#color-mode-image-mask);
+  mask-composite: intersect;
+}
+
+@keyframes color-mode-reveal {
+  to { --color-mode-reveal-radius: 100.2%; }
+}
+
+@keyframes color-mode-image-dim {
+  from { filter: brightness(1); }
+  to { filter: brightness(0.92); }
 }
 
 body {
