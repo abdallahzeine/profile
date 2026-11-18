@@ -101,8 +101,7 @@
 - Let's Chat!
 - Open to opportunities, collaborations, or just a friendly hello.
 - abdallahzeine@gmail.com
-- +962 78 007 1840
-- +966 56 645 4894 (Secondary)
+- +966 53 285 6568
 - Quick Message
 - Prefer email? Click the button below.
 - Send Email
@@ -111,8 +110,7 @@
 - Abdallah Zeine Elabidine
 - All rights reserved.
 - abdallahzeine@gmail.com
-- +962 78 007 1840 (Jordan)
-- +966 56 645 4894 (Saudi Arabia) (Secondary)
+- +966 53 285 6568 (Saudi Arabia)
 
 ## CV Page
 - Abdallah Zeine CV
